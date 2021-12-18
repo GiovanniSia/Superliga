@@ -66,4 +66,14 @@ public class SocioDTO {
         sb.append('}');
         return sb.toString();
     }
+    
+    public String toStringNombreEdadEquipo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Socio{nombre=").append(nombre);
+        sb.append(", edad=").append(edad);
+        sb.append(", equipo=").append(equipo);
+        sb.append('}');
+        return sb.toString();
+    }
+    
 }
