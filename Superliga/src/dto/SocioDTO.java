@@ -1,6 +1,7 @@
 package dto;
 
 public class SocioDTO {
+
     private String nombre;
     private String edad;
     private String equipo;
@@ -66,7 +67,7 @@ public class SocioDTO {
         sb.append('}');
         return sb.toString();
     }
-    
+
     public String toStringNombreEdadEquipo() {
         StringBuilder sb = new StringBuilder();
         sb.append("Socio{nombre=").append(nombre);
@@ -75,5 +76,5 @@ public class SocioDTO {
         sb.append('}');
         return sb.toString();
     }
-    
+
 }

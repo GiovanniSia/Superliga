@@ -36,7 +36,8 @@ public class Comparador implements Comparator<SocioDTO> {
             case 5 -> {
                 return o1.getNivelDeEstudios().compareTo(o2.getNivelDeEstudios());
             }
-            default -> JOptionPane.showMessageDialog(null, "No es una opcion valida");
+            default ->
+                JOptionPane.showMessageDialog(null, "No es una opcion valida");
         }
         return 2;
     }

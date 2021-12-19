@@ -3,6 +3,7 @@ package dao;
 import dto.SocioDTO;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class CSV {
 
     public void leerArchivo(String nombreArchivo) {
         try {
-            lector = new BufferedReader (new InputStreamReader (new FileInputStream(nombreArchivo), "ISO-8859-1"));
+            lector = new BufferedReader(new InputStreamReader(new FileInputStream(nombreArchivo), "ISO-8859-1"));
 
             while ((linea = lector.readLine()) != null) {
                 partes = linea.split(";");
@@ -26,7 +27,7 @@ public class CSV {
             linea = null;
             partes = null;
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println(e);
         }
     }

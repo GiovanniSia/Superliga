@@ -18,10 +18,10 @@ public class SociosDAO {
     }
 
     public void imprimirCantidadTotalPersonasRegistradas() {
-        System.out.println("Cantidad total de personas registradas: " + cantidadTotalPersonasRegistradas());
+        System.out.println("Cantidad: " + cantidadTotalPersonasRegistradas());
     }
-    
-    public int cantidadTotalPersonasRegistradas(){
+
+    public int cantidadTotalPersonasRegistradas() {
         return listaSocios.size();
     }
 
@@ -33,14 +33,14 @@ public class SociosDAO {
         List<SocioDTO> sociosDeRacing = listaSocios.stream()
                 .filter(p -> p.getEquipo().equals("Racing"))
                 .collect(Collectors.toList());
-        
+
         int promedioEdadSociosRacing = calcularPromedioEdad(sociosDeRacing);
         return promedioEdadSociosRacing;
     }
 
     public void imprimirCienSociosCasadosUniversitariosDeMenorAMayor() {
         List<SocioDTO> cienSociosUniversitariosCasados = listaCienSociosCasadosUniversitariosDeMenorAMayor();
-        
+
         for (SocioDTO s : cienSociosUniversitariosCasados) {
             System.out.println(s.toStringNombreEdadEquipo());
         }
@@ -98,7 +98,7 @@ public class SociosDAO {
             int edadPromedio = calcularPromedioEdad(m.getValue());
             int mayorEdad = calcularMayorEdad(m.getValue());
             int menorEdad = calcularMenorEdad(m.getValue());
-            
+
             System.out.println("Edad Promedio: " + edadPromedio);
             System.out.println("Mayor Edad: " + mayorEdad);
             System.out.println("Menor Edad: " + menorEdad);
@@ -134,23 +134,23 @@ public class SociosDAO {
         int promedioEdad = totalEdad / listaSocios.size();
         return promedioEdad;
     }
-    
-        private static int calcularMayorEdad(List<SocioDTO> listaSocios) {
-        int mayorEdad=0;
+
+    private static int calcularMayorEdad(List<SocioDTO> listaSocios) {
+        int mayorEdad = 0;
         for (SocioDTO s : listaSocios) {
             if (s.getEdad() > mayorEdad) {
-                    mayorEdad = s.getEdad();
-                }
+                mayorEdad = s.getEdad();
+            }
         }
         return mayorEdad;
     }
 
     private static int calcularMenorEdad(List<SocioDTO> listaSocios) {
-        int menorEdad= listaSocios.get(0).getEdad();
+        int menorEdad = listaSocios.get(0).getEdad();
         for (SocioDTO s : listaSocios) {
             if (s.getEdad() < menorEdad) {
-                    menorEdad = s.getEdad();
-                }
+                menorEdad = s.getEdad();
+            }
         }
         return menorEdad;
     }
