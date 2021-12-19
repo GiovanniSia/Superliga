@@ -24,7 +24,7 @@ public class SociosDAO {
         }
         int promedioEdadSociosRacing = totalEdad / sociosDeRacing.size();
         System.out.println("Promedio de edad del los socios de Racing: " + promedioEdadSociosRacing);
-        
+
         return promedioEdadSociosRacing;
     }
 
@@ -64,6 +64,56 @@ public class SociosDAO {
             System.out.println(m);
         }
         return mapaCantidadCincoSociosPorNombreDeMayorAMenor;
+    }
+
+    public static void imprimirSociosPorEquipoEdadPromedioDeMayorAMenor(List<SocioDTO> listaSocios) {
+        //List<SocioDTO> sociosHinchasDeRiver = listaSocios.stream().filter(p -> p.getEquipo().equals("River")).collect(Collectors.toList());
+
+        Map<String, ArrayList<SocioDTO>> mapaSociosPorEqupo = new HashMap<String, ArrayList<SocioDTO>>();
+
+        for (SocioDTO s : listaSocios) {
+            if (!mapaSociosPorEqupo.containsKey(s.getEquipo())) {
+                ArrayList<SocioDTO> array = new ArrayList<SocioDTO>();
+                mapaSociosPorEqupo.put(s.getEquipo(), array);
+                mapaSociosPorEqupo.computeIfAbsent(s.getEquipo(), k -> new ArrayList<>()).add(s);
+            } else {
+                mapaSociosPorEqupo.computeIfAbsent(s.getEquipo(), k -> new ArrayList<>()).add(s);
+            }
+        }
+        Map<String, ArrayList<SocioDTO>> map = mapaSociosPorEqupo.entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue((o1, o2) -> Integer.compare(o1.size(), o2.size()))))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (viejo, nuevo) -> viejo, LinkedHashMap::new));
+
+        for (Map.Entry<String, ArrayList<SocioDTO>> m : map.entrySet()) {
+            System.out.println("Equipo: " + m.getKey());
+            System.out.println("Socios: " + m.getValue().size());
+            int edadTotalPorEquipo = 0;
+            int mayorEdadPorEquipo = 0;
+            int menorEdadPorEquipo = m.getValue().get(0).getEdad();
+            for (SocioDTO s : m.getValue()) {
+                edadTotalPorEquipo += s.getEdad();
+                //actualiza el numero mayor y su incial correspondiente
+                if (s.getEdad() > mayorEdadPorEquipo) {
+                    mayorEdadPorEquipo = s.getEdad();
+                }
+                //actualiza el numero menor y su incial correspondiente
+                if (s.getEdad() < menorEdadPorEquipo) {
+                    menorEdadPorEquipo = s.getEdad();
+                }
+            }
+            int edadPromedioPorEqupo = edadTotalPorEquipo / m.getValue().size();
+            System.out.println("Edad Promedio: " + edadPromedioPorEqupo);
+            System.out.println("Mayor Edad: " + mayorEdadPorEquipo);
+            System.out.println("Menor Edad: " + menorEdadPorEquipo);
+
+            edadTotalPorEquipo = 0;
+            mayorEdadPorEquipo = 0;
+            menorEdadPorEquipo = m.getValue().get(0).getEdad();
+        }
     }
 
     private static void ordenarSociosDeMenorAMayor(List<SocioDTO> listaSocios, int nroColumna) {

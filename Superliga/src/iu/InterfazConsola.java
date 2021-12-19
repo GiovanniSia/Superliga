@@ -61,7 +61,7 @@ public class InterfazConsola {
                     System.out.println("Un listado, ordenado de mayor a menor según la cantidad de \n"
                             + "socios, que enumere, junto con cada equipo, el promedio de edad \n"
                             + "de sus socios, la menor edad registrada y la mayor edad registrada.");
-                    //SociosDAO.imprimirSociosPorEqupoEdadPromedioDeMayorAMenor(csv.getListaSocios());
+                    SociosDAO.imprimirSociosPorEquipoEdadPromedioDeMayorAMenor(csv.getListaSocios());
                     break;
                 }
                 case 6: {
