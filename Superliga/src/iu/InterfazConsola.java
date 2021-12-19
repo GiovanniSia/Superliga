@@ -40,7 +40,7 @@ public class InterfazConsola {
 
             switch (seleccionado) {
                 case 1 -> {
-                    System.out.println("La cantidad total de personas registradas.");
+                    System.out.println("Cantidad total de personas registradas.");
                     socios.imprimirCantidadTotalPersonasRegistradas();
                 }
                 case 2 -> {
@@ -48,11 +48,13 @@ public class InterfazConsola {
                     socios.imprimirPromedioEdadSociosRacing();
                 }
                 case 3 -> {
-                    System.out.println("Listado de los cien socios casados y universitarios ordenados de mayor a menor.");
+                    System.out.println("Un listado con las 100 primeras personas casadas, con estudios \n"
+                            + "Universitarios, ordenadas de menor a mayor según su edad. Por \n"
+                            + "cada persona, mostrar: nombre, edad y equipo");
                     socios.imprimirCienSociosCasadosUniversitariosDeMenorAMayor();
                 }
                 case 4 -> {
-                    System.out.println("Listado de los cinco nombre mas comunes entre los hinchas de river.");
+                    System.out.println("Un listado con los 5 nombres más comunes entre los hinchas de River.");
                     socios.imprimirCincoNombreMasComunesDeHinchasDeRiver();
                 }
                 case 5 -> {
