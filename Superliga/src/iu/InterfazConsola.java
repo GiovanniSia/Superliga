@@ -28,15 +28,15 @@ public class InterfazConsola {
             Scanner consola = new Scanner(System.in);
             System.out.println("--------------------------------------");
             var seleccionado = 0;
-            if (!consola.hasNext("[A-Za-z]+")) {
-                seleccionado = Integer.parseInt(consola.nextLine());
-            } else {
+            
+            try {
+                seleccionado = Integer.parseInt(consola.nextLine());;
+            } catch (Exception e) {
                 System.out.println("Valor invalido.");
                 continue;
             }
 
             switch (seleccionado) {
-
                 case 1: {
                     System.out.println("La cantidad total de personas registradas.");
                     SociosDAO.imprimirCantidadTotalPersonasRegistradas(csv.getListaSocios());
@@ -69,12 +69,10 @@ public class InterfazConsola {
                     menu = false;
                     break;
                 }
-
                 default: {
                     System.out.println("Numero invalido.");
                     break;
                 }
-
             }
         } while (menu);
     }
