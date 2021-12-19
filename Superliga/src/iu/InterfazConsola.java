@@ -8,7 +8,7 @@ public class InterfazConsola {
 
     public static void iniciarMenu() {
         CSV csv = new CSV();
-        csv.leerArchivo("C:..\\Superliga\\archivoCSV\\socios.csv");
+        csv.leerArchivo("..\\Superliga\\archivoCSV\\socios.csv");
         Socios socios = new Socios(csv.getListaSocios());
 
         boolean menu = true;
